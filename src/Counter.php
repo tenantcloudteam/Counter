@@ -33,7 +33,7 @@ class Counter
      * @var bool
      */
     private static $honor_do_not_track = false;
-    
+
     /**
      * Singleton for the $page in question
      *
@@ -77,7 +77,7 @@ class Counter
         $page = self::pageId($identifier, $id);
 
         self::processHit($page);
-        
+
         $hits = self::countHits($page);
 
         return $hits;
@@ -125,7 +125,7 @@ class Counter
 
         return number_format($hits);
     }
-    
+
     /**
      * Return visitor count for all pages on the site.
      * You may supply an integer if you would like to
@@ -149,14 +149,14 @@ class Counter
         }
 
         return number_format($hits);
-    }    
+    }
 
 
     /*====================== PRIVATE METHODS =============================*/
 
     /**
      * Processes the hit request for the page in question.
-     * 
+     *
      * @param string $page
      * @return null
      */
@@ -185,7 +185,7 @@ class Counter
     private static function hashVisitor()
     {
         $cookie = Cookie::get(env('COUNTER_COOKIE', 'kryptonit3-counter'));
-        $visitor = ($cookie !== false) ? $cookie : $_SERVER['REMOTE_ADDR'];
+        $visitor = $cookie ? $cookie : $_SERVER['REMOTE_ADDR'];
 
         return hash("SHA256", env('APP_KEY') . $visitor);
     }
